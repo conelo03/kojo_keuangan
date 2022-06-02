@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2022 at 05:15 PM
+-- Generation Time: Jun 02, 2022 at 03:32 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.2.33
 
@@ -167,6 +167,43 @@ INSERT INTO `tb_jahit` (`id_jahit`, `id_order`, `id_pegawai`, `file_jahit`, `cat
 (1, 4, 1, '5533-15688-1-PB.pdf', 'tes jahit', 4, '2022-04-22 23:20:38'),
 (2, 5, 1, '', '', 0, '2022-04-27 17:30:57'),
 (3, 6, 0, NULL, NULL, 0, '2022-05-29 21:13:32');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_jenis_pemasukan`
+--
+
+CREATE TABLE `tb_jenis_pemasukan` (
+  `id_jenis_pemasukan` int(11) NOT NULL,
+  `jenis_pemasukan` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_jenis_pemasukan`
+--
+
+INSERT INTO `tb_jenis_pemasukan` (`id_jenis_pemasukan`, `jenis_pemasukan`) VALUES
+(1, 'Pendapatan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_jenis_pengeluaran`
+--
+
+CREATE TABLE `tb_jenis_pengeluaran` (
+  `id_jenis_pengeluaran` int(11) NOT NULL,
+  `jenis_pengeluaran` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_jenis_pengeluaran`
+--
+
+INSERT INTO `tb_jenis_pengeluaran` (`id_jenis_pengeluaran`, `jenis_pengeluaran`) VALUES
+(1, 'HPP'),
+(2, 'Beban Gaji');
 
 -- --------------------------------------------------------
 
@@ -883,6 +920,54 @@ INSERT INTO `tb_pelanggan` (`id_pelanggan`, `nama_pelanggan`, `jenis_kelamin`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_pemasukan`
+--
+
+CREATE TABLE `tb_pemasukan` (
+  `id_pemasukan` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `id_jenis_pemasukan` int(11) NOT NULL,
+  `keterangan` text NOT NULL,
+  `referensi` varchar(100) NOT NULL,
+  `jumlah` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_pemasukan`
+--
+
+INSERT INTO `tb_pemasukan` (`id_pemasukan`, `tanggal`, `id_jenis_pemasukan`, `keterangan`, `referensi`, `jumlah`) VALUES
+(1, '2022-06-01', 1, 'Order 1', 'tes', 1200000),
+(2, '2022-06-02', 1, 'Order 2', 'ref 2', 2500000),
+(3, '2022-07-01', 1, '1', '1', 1),
+(4, '2021-06-02', 1, '1', '1', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_pengeluaran`
+--
+
+CREATE TABLE `tb_pengeluaran` (
+  `id_pengeluaran` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `id_jenis_pengeluaran` int(11) NOT NULL,
+  `keterangan` text NOT NULL,
+  `referensi` varchar(100) NOT NULL,
+  `jumlah` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_pengeluaran`
+--
+
+INSERT INTO `tb_pengeluaran` (`id_pengeluaran`, `tanggal`, `id_jenis_pengeluaran`, `keterangan`, `referensi`, `jumlah`) VALUES
+(1, '2022-06-02', 1, 'HPP Order 1', 'ref 1', 1000000),
+(2, '2022-06-01', 1, 'HPP Order 2', 'Ref 2', 2000000);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_pengiriman`
 --
 
@@ -1048,6 +1133,18 @@ ALTER TABLE `tb_jahit`
   ADD PRIMARY KEY (`id_jahit`);
 
 --
+-- Indexes for table `tb_jenis_pemasukan`
+--
+ALTER TABLE `tb_jenis_pemasukan`
+  ADD PRIMARY KEY (`id_jenis_pemasukan`);
+
+--
+-- Indexes for table `tb_jenis_pengeluaran`
+--
+ALTER TABLE `tb_jenis_pengeluaran`
+  ADD PRIMARY KEY (`id_jenis_pengeluaran`);
+
+--
 -- Indexes for table `tb_keuangan`
 --
 ALTER TABLE `tb_keuangan`
@@ -1094,6 +1191,18 @@ ALTER TABLE `tb_pegawai_qc`
 --
 ALTER TABLE `tb_pelanggan`
   ADD PRIMARY KEY (`id_pelanggan`);
+
+--
+-- Indexes for table `tb_pemasukan`
+--
+ALTER TABLE `tb_pemasukan`
+  ADD PRIMARY KEY (`id_pemasukan`);
+
+--
+-- Indexes for table `tb_pengeluaran`
+--
+ALTER TABLE `tb_pengeluaran`
+  ADD PRIMARY KEY (`id_pengeluaran`);
 
 --
 -- Indexes for table `tb_pengiriman`
@@ -1151,13 +1260,25 @@ ALTER TABLE `tb_cutting`
 -- AUTO_INCREMENT for table `tb_detail_agenda`
 --
 ALTER TABLE `tb_detail_agenda`
-  MODIFY `id_detail_agenda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_detail_agenda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tb_jahit`
 --
 ALTER TABLE `tb_jahit`
   MODIFY `id_jahit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tb_jenis_pemasukan`
+--
+ALTER TABLE `tb_jenis_pemasukan`
+  MODIFY `id_jenis_pemasukan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `tb_jenis_pengeluaran`
+--
+ALTER TABLE `tb_jenis_pengeluaran`
+  MODIFY `id_jenis_pengeluaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_keuangan`
@@ -1175,7 +1296,7 @@ ALTER TABLE `tb_kota`
 -- AUTO_INCREMENT for table `tb_order`
 --
 ALTER TABLE `tb_order`
-  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tb_pegawai`
@@ -1206,6 +1327,18 @@ ALTER TABLE `tb_pegawai_qc`
 --
 ALTER TABLE `tb_pelanggan`
   MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tb_pemasukan`
+--
+ALTER TABLE `tb_pemasukan`
+  MODIFY `id_pemasukan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tb_pengeluaran`
+--
+ALTER TABLE `tb_pengeluaran`
+  MODIFY `id_pengeluaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_pengiriman`

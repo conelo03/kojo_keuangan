@@ -48,7 +48,9 @@ $get_user = $this->db->get_where('tb_pegawai', ['id_pegawai' => $id_pegawai])->r
             <?php endif;?>
 
             <li class="menu-header">Data Transaksi</li>       
-
+            <li class="<?= $title == 'Data Pemasukan' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('pemasukan');?>"><i class="fas fa-download"></i> <span>Data Pemasukan</span></a></li> 
+            <li class="<?= $title == 'Data Pengeluaran' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('pengeluaran');?>"><i class="fas fa-upload"></i> <span>Data Pengeluaran</span></a></li> 
+            <li class="<?= $title == 'Cash Flow' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('cash-flow');?>"><i class="fas fa-sync"></i> <span>Cash Flow</span></a></li> 
           </ul>
 
           <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

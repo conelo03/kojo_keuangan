@@ -82,3 +82,15 @@ $route['edit-order/(:any)'] 	    = 'Order/edit/$1';
 $route['hapus-order/(:any)']    	= 'Order/hapus/$1';
 $route['detail-order/(:any)']		= 'Order/detail/$1';
 $route['cetak-bom-list/(:any)']		= 'Order/cetak/$1';
+
+$route['pemasukan'] 				    = 'Pemasukan';
+$route['tambah-pemasukan'] 	        = 'Pemasukan/tambah';
+$route['edit-pemasukan/(:any)'] 	    = 'Pemasukan/edit/$1';
+$route['hapus-pemasukan/(:any)']    	= 'Pemasukan/hapus/$1';
+
+$route['pengeluaran'] 				    = 'Pengeluaran';
+$route['tambah-pengeluaran'] 	        = 'Pengeluaran/tambah';
+$route['edit-pengeluaran/(:any)'] 	    = 'Pengeluaran/edit/$1';
+$route['hapus-pengeluaran/(:any)']    	= 'Pengeluaran/hapus/$1';
+
+$route['cash-flow'] 				    = 'Cashflow';

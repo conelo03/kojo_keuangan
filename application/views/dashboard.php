@@ -11,7 +11,7 @@
       <h6>Selamat Datang di Aplikasi Keuangan <b>Kojo Cloth</b></h6>
 
     </div>
-    <?php if(is_admin() || is_produksi()):?>
+    <!-- <?php if(is_admin() || is_produksi()):?>
     <div class="section-body">
       <div class="row">
         <div class="col-12">
@@ -69,7 +69,7 @@
         </div>
       </div>
     </div>
-	<?php endif;?>
+	  <?php endif;?> -->
   </section>
   
 </div>
