@@ -94,3 +94,21 @@ $route['edit-pengeluaran/(:any)'] 	    = 'Pengeluaran/edit/$1';
 $route['hapus-pengeluaran/(:any)']    	= 'Pengeluaran/hapus/$1';
 
 $route['cash-flow'] 				    = 'Cashflow';
+
+$route['gaji'] 				    = 'Gaji';
+$route['tambah-gaji'] 	        = 'Gaji/tambah';
+$route['edit-gaji/(:any)'] 	    = 'Gaji/edit/$1';
+$route['hapus-gaji/(:any)']    	= 'Gaji/hapus/$1';
+$route['posting-gaji/(:any)']    	= 'Gaji/posting/$1';
+$route['detail-gaji/(:any)']    	= 'Gaji/detail/$1';
+$route['tambah-detail-gaji/(:any)'] 	        = 'Gaji/tambah_detail/$1';
+$route['edit-detail-gaji/(:any)/(:any)'] 	    = 'Gaji/edit_detail/$1/$2';
+$route['hapus-detail-gaji/(:any)/(:any)']    	= 'Gaji/hapus_detail/$1/$2';
+
+$route['gaji-produksi'] 				    = 'Gaji_produksi';
+$route['tambah-gaji-produksi'] 	        = 'Gaji_produksi/tambah';
+$route['edit-gaji-produksi/(:any)'] 	    = 'Gaji_produksi/edit/$1';
+$route['hapus-gaji-produksi/(:any)']    	= 'Gaji_produksi/hapus/$1';
+$route['generate-gaji-produksi/(:any)']    	= 'Gaji_produksi/generate/$1';
+$route['posting-gaji-produksi/(:any)']    	= 'Gaji_produksi/posting/$1';
+$route['detail-gaji-produksi/(:any)']    	= 'Gaji_produksi/detail/$1';

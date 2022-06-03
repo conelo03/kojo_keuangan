@@ -122,6 +122,22 @@
           position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
       });
     </script>
+  <?php elseif($this->session->flashdata('msg')=='generate'):?>
+    <script type="text/javascript">
+      iziToast.success({
+          title: 'Sukses!',
+          message: 'Data berhasil digenerate!',
+          position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
+      });
+    </script>
+  <?php elseif($this->session->flashdata('msg')=='posting'):?>
+    <script type="text/javascript">
+      iziToast.success({
+          title: 'Sukses!',
+          message: 'Data berhasil diposting!',
+          position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
+      });
+    </script>
   <?php elseif($this->session->flashdata('msg')=='password-salah'):?>
     <script type="text/javascript">
       iziToast.error({
