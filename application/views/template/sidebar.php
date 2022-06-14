@@ -45,6 +45,7 @@ $get_user = $this->db->get_where('tb_pegawai', ['id_pegawai' => $id_pegawai])->r
             <li class="menu-header">Data Master</li>      
             <li class="<?= $title == 'Data Pegawai' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('pegawai');?>"><i class="fas fa-users"></i> <span>Data Pegawai</span></a></li> 
             <li class="<?= $title == 'Data Akun' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('akun');?>"><i class="fas fa-users"></i> <span>Data Akun</span></a></li> 
+            <li class="<?= $title == 'Jenis Pemasukan' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('akun');?>"><i class="fas fa-users"></i> <span>Data Akun</span></a></li> 
             <?php endif;?>
 
             <li class="menu-header">Data Transaksi</li>       
