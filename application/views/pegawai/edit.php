@@ -67,6 +67,11 @@
                 </div>
                 <?= form_error('jenis_kelamin', '<span class="text-danger small">', '</span>'); ?>
                 <div class="form-group">
+                  <label>Gaji Pokok</label>
+                  <input type="number" name="gaji_pokok" class="form-control" value="<?= set_value('gaji_pokok', $pegawai['gaji_pokok']); ?>" required="">
+                  <?= form_error('gaji_pokok', '<span class="text-danger small">', '</span>'); ?>
+                </div>
+                <div class="form-group">
                   <label>Foto</label>
                   <input type="hidden" name="foto_old" class="form-control" value="<?= $pegawai['foto']; ?>" required="">
                   <input type="file" name="foto" class="form-control" value="<?= set_value('foto'); ?>" >

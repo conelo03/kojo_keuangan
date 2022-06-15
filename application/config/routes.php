@@ -104,6 +104,7 @@ $route['detail-gaji/(:any)']    	= 'Gaji/detail/$1';
 $route['tambah-detail-gaji/(:any)'] 	        = 'Gaji/tambah_detail/$1';
 $route['edit-detail-gaji/(:any)/(:any)'] 	    = 'Gaji/edit_detail/$1/$2';
 $route['hapus-detail-gaji/(:any)/(:any)']    	= 'Gaji/hapus_detail/$1/$2';
+$route['cetak-slip-gaji/(:any)']    	= 'Gaji/cetak_slip/$1';
 
 $route['gaji-produksi'] 				    = 'Gaji_produksi';
 $route['tambah-gaji-produksi'] 	        = 'Gaji_produksi/tambah';

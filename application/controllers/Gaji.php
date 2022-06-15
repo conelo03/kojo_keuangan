@@ -109,6 +109,7 @@ class Gaji extends CI_Controller {
 	public function detail($id_gaji)
 	{
     $data['title']		= 'Data Gaji';
+		$data['gp'] = $this->M_gaji->get_by_id($id_gaji);
 		$data['gaji']		= $this->db->select('*')
 		->from('tb_detail_gaji')
 		->join('tb_pegawai', 'tb_pegawai.id_pegawai=tb_detail_gaji.id_pegawai')
@@ -131,9 +132,10 @@ class Gaji extends CI_Controller {
 			$data_user	= [
 				'id_gaji' => $id_gaji,
 				'id_pegawai'			=> $data['id_pegawai'],
-				'jumlah'			=> $data['jumlah'],
+				'gaji_pokok'			=> $data['gaji_pokok'],
+				'bonus'			=> $data['bonus'],
 				'kasbon'			=> $data['kasbon'],
-				'total'			=> $data['jumlah']-$data['kasbon'],
+				'total'			=> $data['gaji_pokok']+$data['bonus']-$data['kasbon'],
 				'keterangan'			=> $data['keterangan'],
 			];
 			$query = $this->db->insert('tb_detail_gaji', $data_user);
@@ -162,9 +164,10 @@ class Gaji extends CI_Controller {
 			$data_user	= [
 				'id_gaji' => $id_gaji,
 				'id_pegawai'			=> $data['id_pegawai'],
-				'jumlah'			=> $data['jumlah'],
+				'gaji_pokok'			=> $data['gaji_pokok'],
+				'bonus'			=> $data['bonus'],
 				'kasbon'			=> $data['kasbon'],
-				'total'			=> $data['jumlah']-$data['kasbon'],
+				'total'			=> $data['gaji_pokok']+$data['bonus']-$data['kasbon'],
 				'keterangan'			=> $data['keterangan'],
 			];
 
@@ -184,7 +187,7 @@ class Gaji extends CI_Controller {
 	private function validation_detail()
 	{
 		$this->form_validation->set_rules('id_pegawai', 'Pegawai', 'required|trim');
-		$this->form_validation->set_rules('jumlah', 'Jumlah', 'required');
+		$this->form_validation->set_rules('gaji_pokok', 'Gaji Pokok', 'required');
 		$this->form_validation->set_rules('kasbon', 'Kasbon', 'required');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required|trim');
 		
@@ -197,6 +200,14 @@ class Gaji extends CI_Controller {
 		$this->sum_gaji($id_gaji);
 		$this->session->set_flashdata('msg', 'hapus');
 		redirect('detail-gaji/'.$id_gaji);
+	}
+
+	public function cetak_slip($id_detail_gaji)
+	{
+		$data['title'] = 'Slip Gaji';
+		$data['dg'] = $this->db->select('*')->from('tb_detail_gaji')->join('tb_pegawai', 'tb_pegawai.id_pegawai=tb_detail_gaji.id_pegawai')->where('tb_detail_gaji.id_detail_gaji', $id_detail_gaji)->get()->row_array();
+		//var_dump($dg);
+		$this->load->view('gaji/cetak_slip', $data);
 	}
 
 	private function sum_gaji($id_gaji)

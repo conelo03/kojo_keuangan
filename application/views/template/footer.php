@@ -30,6 +30,30 @@
   <!-- Page Specific JS File -->
   <script src="<?= base_url(); ?>assets/js/page/index-0.js"></script>
   <script type="text/javascript">
+    $(document).ready(function(){
+      
+      $("#select-pegawai").change(function(){ 
+      
+        $.ajax({
+          type: "POST", 
+          url: "<?= base_url("Pegawai/get_gaji"); ?>", 
+          data: {id_pegawai : $("#select-pegawai").val()}, 
+          async : true,
+          dataType: "JSON",
+          success: function(res) {
+            console.log(res);
+            if(res.response === true){
+              document.getElementById("gaji_pokok").setAttribute('value',res.data.gaji_pokok);
+              $('#item-error').html('');
+            } else {
+              $('#item-error').html('Item tidak ditemukan!');
+              document.getElementById("gaji_pokok").setAttribute('value', '');
+            }
+          }, 
+        });
+      });
+    });
+
     $(document).ready( function () {
       $('#datatables-user').DataTable({
         "ordering": false,

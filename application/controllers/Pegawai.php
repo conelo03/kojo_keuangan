@@ -39,6 +39,7 @@ class Pegawai extends CI_Controller {
 				'tempat_lahir'			=> $data['tempat_lahir'],
 				'tanggal_lahir'			=> $data['tanggal_lahir'],
 				'jenis_kelamin'			=> $data['jenis_kelamin'],
+				'gaji_pokok'			=> $data['gaji_pokok'],
 				'foto'			=> $foto,
 			];
 			if ($this->M_pegawai->insert($data_user)) {
@@ -74,6 +75,7 @@ class Pegawai extends CI_Controller {
 				'tempat_lahir'			=> $data['tempat_lahir'],
 				'tanggal_lahir'			=> $data['tanggal_lahir'],
 				'jenis_kelamin'			=> $data['jenis_kelamin'],
+				'gaji_pokok'			=> $data['gaji_pokok'],
 				'foto'			=> $foto,
 			];
 			
@@ -201,5 +203,22 @@ class Pegawai extends CI_Controller {
 		$this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required|trim');
 		$this->form_validation->set_rules('password', 'Password', 'trim');
 		$this->form_validation->set_rules('password2', 'Konfirmasi Password', 'matches[password]');
+	}
+
+	public function get_gaji()
+	{
+        $id_pegawai = $this->input->post('id_pegawai');
+        $pegawai = $this->M_pegawai->get_by_id($id_pegawai);
+
+				$data = [
+					'gaji_pokok' => $pegawai['gaji_pokok'],
+				];
+				
+        $response = [
+					'response' => true,
+        	'data'	=> $data
+
+        ]; 
+        echo json_encode($response);
 	}
 }

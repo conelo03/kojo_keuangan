@@ -17,7 +17,7 @@
           <div class="card">
             <form action="<?= base_url('tambah-gaji'); ?>" method="post" enctype="multipart/form-data">
               <div class="card-header">
-                <h4>Form Tambah Gaji Produksi</h4>
+                <h4>Form Tambah Gaji</h4>
               </div>
               <div class="card-body">
                 <div class="row">

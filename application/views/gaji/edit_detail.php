@@ -32,9 +32,14 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label>Jumlah Gaji</label>
-                  <input type="number" name="jumlah" class="form-control" value="<?= set_value('jumlah', $dg['jumlah']); ?>" required="">
-                  <?= form_error('jumlah', '<span class="text-danger small">', '</span>'); ?>
+                  <label>Gaji Pokok</label>
+                  <input type="number" name="gaji_pokok" class="form-control" id="gaji_pokok" value="<?= set_value('gaji_pokok', $dg['gaji_pokok']); ?>" required="">
+                  <?= form_error('gaji_pokok', '<span class="text-danger small">', '</span>'); ?>
+                </div>
+                <div class="form-group">
+                  <label>Bonus</label>
+                  <input type="number" name="bonus" class="form-control" value="<?= set_value('bonus', $dg['bonus']); ?>" required="">
+                  <?= form_error('bonus', '<span class="text-danger small">', '</span>'); ?>
                 </div>
                 <div class="form-group">
                   <label>Kasbon</label>
