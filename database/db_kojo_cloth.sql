@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2022 at 01:19 PM
+-- Generation Time: Jun 15, 2022 at 03:30 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.2.33
 
@@ -153,7 +153,8 @@ CREATE TABLE `tb_detail_gaji` (
   `id_detail_gaji` int(11) NOT NULL,
   `id_gaji` int(11) NOT NULL,
   `id_pegawai` int(11) NOT NULL,
-  `jumlah` double NOT NULL,
+  `gaji_pokok` double NOT NULL,
+  `bonus` double NOT NULL,
   `kasbon` double NOT NULL,
   `total` double NOT NULL,
   `keterangan` text NOT NULL
@@ -163,9 +164,14 @@ CREATE TABLE `tb_detail_gaji` (
 -- Dumping data for table `tb_detail_gaji`
 --
 
-INSERT INTO `tb_detail_gaji` (`id_detail_gaji`, `id_gaji`, `id_pegawai`, `jumlah`, `kasbon`, `total`, `keterangan`) VALUES
-(2, 1, 8, 3000000, 0, 3000000, '-'),
-(3, 1, 4, 2700000, 100000, 2600000, '-');
+INSERT INTO `tb_detail_gaji` (`id_detail_gaji`, `id_gaji`, `id_pegawai`, `gaji_pokok`, `bonus`, `kasbon`, `total`, `keterangan`) VALUES
+(2, 1, 8, 3000000, 0, 0, 3000000, '-'),
+(3, 1, 4, 2700000, 0, 100000, 2600000, '-'),
+(4, 2, 4, 3000000, 200000, 0, 3200000, '-'),
+(5, 2, 8, 3000000, 250000, 50000, 3200000, '-'),
+(6, 2, 9, 2000000, 100000, 0, 2100000, '-'),
+(7, 2, 10, 4000000, 400000, 0, 4400000, '-'),
+(8, 2, 11, 3700000, 300000, 200000, 3800000, '-');
 
 -- --------------------------------------------------------
 
@@ -209,7 +215,8 @@ CREATE TABLE `tb_gaji` (
 --
 
 INSERT INTO `tb_gaji` (`id_gaji`, `tanggal`, `keterangan`, `jumlah`, `status`) VALUES
-(1, '2022-06-02', 'Gaji Karyawan', 5600000, 1);
+(1, '2022-06-02', 'Gaji Karyawan', 5600000, 1),
+(2, '2022-06-15', 'Gaji Karyawan Manajerial', 16700000, 0);
 
 -- --------------------------------------------------------
 
@@ -883,6 +890,7 @@ CREATE TABLE `tb_pegawai` (
   `tempat_lahir` varchar(50) NOT NULL,
   `tanggal_lahir` date NOT NULL,
   `jenis_kelamin` varchar(10) NOT NULL,
+  `gaji_pokok` int(11) NOT NULL,
   `foto` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -890,17 +898,17 @@ CREATE TABLE `tb_pegawai` (
 -- Dumping data for table `tb_pegawai`
 --
 
-INSERT INTO `tb_pegawai` (`id_pegawai`, `nip`, `nama`, `jabatan`, `alamat`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `foto`) VALUES
-(1, '12345', 'admin', 'Administrator', 'subangg', 'subang', '2022-03-01', 'Laki-laki', 'user.png'),
-(4, 'tess', 'tess', 'Staff Marketing', 'tess', 'tess', '2022-12-31', 'Laki-laki', 'aj_(2)7.jpeg'),
-(5, '123', 'tes cutting', 'Pegawai Cutting', 'tes', 'tes', '2022-04-21', 'Laki-laki', 'aj_(2).jpeg'),
-(6, '123', 'tes pegawai jahit', 'Pegawai Jahit', 'bandun', 'bandung', '2022-04-22', 'Laki-laki', 'aj_(2)1.jpeg'),
-(7, '123', 'tes pegawai qc', 'Pegawai QC', 'bandung', 'bandung', '2022-12-31', 'Laki-laki', 'aj_(2)2.jpeg'),
-(8, '123', 'Pegawai Keuangan', 'Staff Keuangan', 'subang', 'subang', '2022-12-31', 'Laki-laki', 'aj_(2)3.jpeg'),
-(9, '123', 'Pegawai Purchase', 'Staff Purchase', 'subang', 'subang', '2022-12-31', 'Laki-laki', 'aj_(2)4.jpeg'),
-(10, '123', 'Kepala Produksi', 'Kepala Produksi', 'subang', 'subang', '2022-12-31', 'Laki-laki', 'aj_(2)5.jpeg'),
-(11, '123', 'Kepala Marketing', 'Kepala Marketing', 'bandung', 'bandung', '2022-12-31', 'Laki-laki', 'aj_(2)6.jpeg'),
-(12, '21413', 'Pagawai produksi', 'Produksi', 'Bandung', 'bandung', '2021-12-31', 'Laki-laki', 'aj_(2)6.jpeg');
+INSERT INTO `tb_pegawai` (`id_pegawai`, `nip`, `nama`, `jabatan`, `alamat`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `gaji_pokok`, `foto`) VALUES
+(1, '12345', 'admin', 'Administrator', 'subangg', 'subang', '2022-03-01', 'Laki-laki', 3000000, 'user.png'),
+(4, '1232425323', 'Pegawai Marketing', 'Staff Marketing', 'tess', 'tess', '2022-12-31', 'Laki-laki', 3000000, 'aj_(2)7.jpeg'),
+(5, '123', 'tes cutting', 'Pegawai Cutting', 'tes', 'tes', '2022-04-21', 'Laki-laki', 0, 'aj_(2).jpeg'),
+(6, '123', 'tes pegawai jahit', 'Pegawai Jahit', 'bandun', 'bandung', '2022-04-22', 'Laki-laki', 0, 'aj_(2)1.jpeg'),
+(7, '123', 'tes pegawai qc', 'Pegawai QC', 'bandung', 'bandung', '2022-12-31', 'Laki-laki', 0, 'aj_(2)2.jpeg'),
+(8, '123', 'Pegawai Keuangan', 'Staff Keuangan', 'subang', 'subang', '2022-12-31', 'Laki-laki', 3000000, 'aj_(2)3.jpeg'),
+(9, '123', 'Pegawai Purchase', 'Staff Purchase', 'subang', 'subang', '2022-12-31', 'Laki-laki', 2000000, 'aj_(2)4.jpeg'),
+(10, '123', 'Kepala Produksi', 'Kepala Produksi', 'subang', 'subang', '2022-12-31', 'Laki-laki', 4000000, 'aj_(2)5.jpeg'),
+(11, '123', 'Kepala Marketing', 'Kepala Marketing', 'bandung', 'bandung', '2022-12-31', 'Laki-laki', 3700000, 'aj_(2)6.jpeg'),
+(12, '21413', 'Pagawai produksi', 'Produksi', 'Bandung', 'bandung', '2021-12-31', 'Laki-laki', 0, 'aj_(2)6.jpeg');
 
 -- --------------------------------------------------------
 
@@ -1416,7 +1424,7 @@ ALTER TABLE `tb_detail_agenda`
 -- AUTO_INCREMENT for table `tb_detail_gaji`
 --
 ALTER TABLE `tb_detail_gaji`
-  MODIFY `id_detail_gaji` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_detail_gaji` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tb_detail_gaji_produksi`
@@ -1428,7 +1436,7 @@ ALTER TABLE `tb_detail_gaji_produksi`
 -- AUTO_INCREMENT for table `tb_gaji`
 --
 ALTER TABLE `tb_gaji`
-  MODIFY `id_gaji` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_gaji` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_gaji_produksi`
