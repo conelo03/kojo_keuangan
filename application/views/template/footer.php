@@ -52,6 +52,27 @@
           }, 
         });
       });
+
+      $("#select-order").change(function(){ 
+      
+      $.ajax({
+        type: "POST", 
+        url: "<?= base_url("Pendapatan_order/get_order"); ?>", 
+        data: {id_order : $("#select-order").val()}, 
+        async : true,
+        dataType: "JSON",
+        success: function(res) {
+          console.log(res);
+          if(res.response === true){
+            document.getElementById("keterangan").setAttribute('value',res.data.keterangan);
+            $('#item-error').html('');
+          } else {
+            $('#item-error').html('Item tidak ditemukan!');
+            document.getElementById("keterangan").setAttribute('value', '');
+          }
+        }, 
+      });
+    });
     });
 
     $(document).ready( function () {
@@ -101,6 +122,9 @@
         search : true,
       });
       $('#select-pejabat').selectpicker({
+        search : true,
+      });
+      $('#select-order').selectpicker({
         search : true,
       });
     });

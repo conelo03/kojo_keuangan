@@ -207,18 +207,18 @@ class Pegawai extends CI_Controller {
 
 	public function get_gaji()
 	{
-        $id_pegawai = $this->input->post('id_pegawai');
-        $pegawai = $this->M_pegawai->get_by_id($id_pegawai);
+		$id_pegawai = $this->input->post('id_pegawai');
+		$pegawai = $this->M_pegawai->get_by_id($id_pegawai);
 
-				$data = [
-					'gaji_pokok' => $pegawai['gaji_pokok'],
-				];
-				
-        $response = [
-					'response' => true,
-        	'data'	=> $data
+		$data = [
+			'gaji_pokok' => $pegawai['gaji_pokok'],
+		];
+		
+		$response = [
+			'response' => true,
+			'data'	=> $data
 
-        ]; 
-        echo json_encode($response);
+		]; 
+		echo json_encode($response);
 	}
 }

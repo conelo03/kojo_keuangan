@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2022 at 03:30 PM
+-- Generation Time: Jun 21, 2022 at 01:36 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.2.33
 
@@ -70,7 +70,8 @@ INSERT INTO `tb_akun` (`id_akun`, `id_pegawai`, `username`, `password`, `role`) 
 (6, 8, 'keuangan', '$2y$10$N7O.Irk8kIK3OOUpklLsEOpBfWQVmNeKYTTjhsxzWpWWBWbXCL7D2', 'Keuangan'),
 (7, 9, 'purchase', '$2y$10$yhqIod5blD9Pzl/bIu.x8.pRp3SSo7PKrF2qu1Y4ipqYB4bV/IK5y', 'Purchase'),
 (8, 10, 'produksi', '$2y$10$CKedfoqqyLpiJ5moxl.HJe6E1RGN2/euvO6fbfdB4bTGEpBpwCVvG', 'Marketing,Kepala Produksi'),
-(9, 11, 'k_marketing', '$2y$10$CMAAJtm5CCvnalCvjruSfeCJn/PktC2MOKJb22.mJRcTXlXIPPq0.', 'Kepala Marketing');
+(9, 11, 'k_marketing', '$2y$10$CMAAJtm5CCvnalCvjruSfeCJn/PktC2MOKJb22.mJRcTXlXIPPq0.', 'Kepala Marketing'),
+(10, 13, 'direktur', '$2y$10$jb4wlIDVfKlV8XmQeuMmcObYaTRe1vJ074GRQS6uBQeJU59t9F/oW', 'Owner');
 
 -- --------------------------------------------------------
 
@@ -908,7 +909,8 @@ INSERT INTO `tb_pegawai` (`id_pegawai`, `nip`, `nama`, `jabatan`, `alamat`, `tem
 (9, '123', 'Pegawai Purchase', 'Staff Purchase', 'subang', 'subang', '2022-12-31', 'Laki-laki', 2000000, 'aj_(2)4.jpeg'),
 (10, '123', 'Kepala Produksi', 'Kepala Produksi', 'subang', 'subang', '2022-12-31', 'Laki-laki', 4000000, 'aj_(2)5.jpeg'),
 (11, '123', 'Kepala Marketing', 'Kepala Marketing', 'bandung', 'bandung', '2022-12-31', 'Laki-laki', 3700000, 'aj_(2)6.jpeg'),
-(12, '21413', 'Pagawai produksi', 'Produksi', 'Bandung', 'bandung', '2021-12-31', 'Laki-laki', 0, 'aj_(2)6.jpeg');
+(12, '21413', 'Pagawai produksi', 'Produksi', 'Bandung', 'bandung', '2021-12-31', 'Laki-laki', 0, 'aj_(2)6.jpeg'),
+(13, '111', 'Direktur', 'Direktur', 'Bandung', 'Bandung', '2022-12-31', 'Laki-laki', 5000000, 'aj_(2)11.jpeg');
 
 -- --------------------------------------------------------
 
@@ -1042,7 +1044,55 @@ INSERT INTO `tb_pemasukan` (`id_pemasukan`, `tanggal`, `id_jenis_pemasukan`, `ke
 (1, '2022-06-01', 1, 'Order 1', 'tes', 1200000),
 (2, '2022-06-02', 1, 'Order 2', 'ref 2', 2500000),
 (3, '2022-07-01', 1, '1', '1', 1),
-(4, '2021-06-02', 1, '1', '1', 1);
+(4, '2021-06-02', 1, '1', '1', 1),
+(5, '2022-06-21', 1, 'Pembayaran Order Jaket - PT. XYZ', '-', 2000000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_pendapatan_order`
+--
+
+CREATE TABLE `tb_pendapatan_order` (
+  `id_pendapatan_order` int(11) NOT NULL,
+  `id_order` int(11) NOT NULL,
+  `id_pegawai` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `keterangan` text NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_pendapatan_order`
+--
+
+INSERT INTO `tb_pendapatan_order` (`id_pendapatan_order`, `id_order`, `id_pegawai`, `tanggal`, `jumlah`, `keterangan`, `status`) VALUES
+(1, 4, 4, '2022-06-21', 2000000, 'Pembayaran Order Jaket - PT. XYZ', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_pengajuan`
+--
+
+CREATE TABLE `tb_pengajuan` (
+  `id_pengajuan` int(11) NOT NULL,
+  `id_jenis_pengeluaran` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `keterangan` text NOT NULL,
+  `jumlah` double NOT NULL,
+  `id_pegawai` int(11) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_pengajuan`
+--
+
+INSERT INTO `tb_pengajuan` (`id_pengajuan`, `id_jenis_pengeluaran`, `tanggal`, `keterangan`, `jumlah`, `id_pegawai`, `status`) VALUES
+(1, 1, '2022-06-21', 'Kasbon', 100000, 10, 2),
+(2, 1, '2022-06-21', 'Kasbon AB', 100000, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -1067,7 +1117,9 @@ INSERT INTO `tb_pengeluaran` (`id_pengeluaran`, `tanggal`, `id_jenis_pengeluaran
 (1, '2022-06-02', 1, 'HPP Order 1', 'ref 1', 1000000),
 (2, '2022-06-01', 1, 'HPP Order 2', 'Ref 2', 2000000),
 (5, '2022-06-02', 2, 'Gaji Karyawan', '-', 5600000),
-(7, '2022-04-23', 2, 'Gaji Mingguan Produksi', '-', 134950);
+(7, '2022-04-23', 2, 'Gaji Mingguan Produksi', '-', 134950),
+(8, '2022-06-21', 1, 'Kasbon', '-', 100000),
+(9, '2022-06-21', 1, 'Kasbon AB', '-', 100000);
 
 -- --------------------------------------------------------
 
@@ -1351,6 +1403,18 @@ ALTER TABLE `tb_pemasukan`
   ADD PRIMARY KEY (`id_pemasukan`);
 
 --
+-- Indexes for table `tb_pendapatan_order`
+--
+ALTER TABLE `tb_pendapatan_order`
+  ADD PRIMARY KEY (`id_pendapatan_order`);
+
+--
+-- Indexes for table `tb_pengajuan`
+--
+ALTER TABLE `tb_pengajuan`
+  ADD PRIMARY KEY (`id_pengajuan`);
+
+--
 -- Indexes for table `tb_pengeluaran`
 --
 ALTER TABLE `tb_pengeluaran`
@@ -1400,7 +1464,7 @@ ALTER TABLE `tb_agenda`
 -- AUTO_INCREMENT for table `tb_akun`
 --
 ALTER TABLE `tb_akun`
-  MODIFY `id_akun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_akun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tb_bordir`
@@ -1484,7 +1548,7 @@ ALTER TABLE `tb_order`
 -- AUTO_INCREMENT for table `tb_pegawai`
 --
 ALTER TABLE `tb_pegawai`
-  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tb_pegawai_cutting`
@@ -1514,13 +1578,25 @@ ALTER TABLE `tb_pelanggan`
 -- AUTO_INCREMENT for table `tb_pemasukan`
 --
 ALTER TABLE `tb_pemasukan`
-  MODIFY `id_pemasukan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pemasukan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tb_pendapatan_order`
+--
+ALTER TABLE `tb_pendapatan_order`
+  MODIFY `id_pendapatan_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `tb_pengajuan`
+--
+ALTER TABLE `tb_pengajuan`
+  MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tb_pengeluaran`
 --
 ALTER TABLE `tb_pengeluaran`
-  MODIFY `id_pengeluaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_pengeluaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tb_pengiriman`

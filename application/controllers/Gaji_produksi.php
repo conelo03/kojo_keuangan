@@ -158,4 +158,18 @@ class Gaji_produksi extends CI_Controller {
 		->get()->result_array();
 		$this->load->view('gaji_produksi/detail', $data);
 	}
+
+	public function detail_gaji($id_gaji_produksi, $id_pegawai)
+	{
+		$gaji = $this->M_gaji_produksi->get_by_id($id_gaji_produksi);
+		$tanggal_pencairan = $gaji['tanggal_pencairan'];
+
+    $data['title']		= 'Detail Gaji Produksi';
+		$data['id_gaji_produksi'] = $id_gaji_produksi;
+		$data['pegawai'] = $this->M_pegawai->get_by_id($id_pegawai);
+		$data['cutting'] = $this->db->query("SELECT * FROM tb_pegawai_cutting WHERE id_pegawai='$id_pegawai' AND tgl_cair='$tanggal_pencairan'")->result_array();
+		$data['jahit'] = $this->db->query("SELECT * FROM tb_pegawai_jahit WHERE id_pegawai='$id_pegawai' AND tgl_cair='$tanggal_pencairan'")->result_array();
+		$data['qc'] = $this->db->query("SELECT * FROM tb_pegawai_qc WHERE id_pegawai='$id_pegawai' AND tgl_cair='$tanggal_pencairan'")->result_array();
+		$this->load->view('gaji_produksi/detail_gaji_by_pegawai', $data);
+	}
 }

@@ -41,6 +41,7 @@
                       <td>Rp <?= number_format($u['kasbon'], '2',',','.' );?></td>
                       <td>Rp <?= number_format($u['total'], '2',',','.' );?></td>
                       <td class="text-center">
+                        <a href="<?= base_url('detail-gaji-by-pegawai/'.$u['id_gaji_produksi'].'/'.$u['id_pegawai']);?>" class="btn btn-light"><i class="fa fa-list"></i> Detail</a>
                         <a href="<?= base_url('cetak-slip-gaji-produksi/'.$u['id_detail_gaji_produksi']);?>" class="btn btn-info"><i class="fa fa-print"></i> Cetak Slip</a>
                       </td>
                     </tr>
@@ -48,6 +49,7 @@
                   </tbody>
                 </table>
               </div>
+              <a href="<?= base_url('gaji-produksi');?>" class="btn btn-light"><i class="fa fa-arrow-left"></i> Kembali</a>
             </div>
           </div>
         </div>

@@ -45,17 +45,40 @@ $get_user = $this->db->get_where('tb_pegawai', ['id_pegawai' => $id_pegawai])->r
             <li class="menu-header">Data Master</li>      
             <li class="<?= $title == 'Data Pegawai' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('pegawai');?>"><i class="fas fa-users"></i> <span>Data Pegawai</span></a></li> 
             <li class="<?= $title == 'Data Akun' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('akun');?>"><i class="fas fa-users"></i> <span>Data Akun</span></a></li> 
-            <li class="<?= $title == 'Jenis Pemasukan' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('akun');?>"><i class="fas fa-users"></i> <span>Data Akun</span></a></li> 
+            <li class="<?= $title == 'Data Jenis Pemasukan' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('jenis-pemasukan');?>"><i class="fas fa-download"></i> <span>Data Jenis Pemasukan</span></a></li>
+            <li class="<?= $title == 'Data Jenis Pengeluaran' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('jenis-pengeluaran');?>"><i class="fas fa-upload"></i> <span>Data Jenis Pengeluaran</span></a></li> 
             <?php endif;?>
 
-            <li class="menu-header">Data Transaksi</li>       
+            <?php if(is_keuangan() || is_admin()):?>
+            <li class="menu-header">Data Gaji</li>       
             <li class="<?= $title == 'Data Gaji' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('gaji');?>"><i class="fas fa-file-invoice-dollar"></i> <span>Data Gaji</span></a></li> 
             <li class="<?= $title == 'Data Gaji Produksi' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('gaji-produksi');?>"><i class="fas fa-file-invoice-dollar"></i> <span>Data Gaji Produksi</span></a></li> 
+            <li class="menu-header">Data Pengajuan</li>
             <li class="<?= $title == 'Data Pengajuan' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('pengajuan');?>"><i class="fas fa-clipboard-check"></i> <span>Data Pengajuan</span></a></li> 
+            <li class="menu-header">Data Pendapatan</li>
+            <li class="<?= $title == 'Data Pendapatan Order' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('pendapatan-order');?>"><i class="fas fa-clipboard-check"></i> <span>Data Pendapatan Order</span></a></li> 
+            <li class="menu-header">Data Transaksi</li>
             <li class="<?= $title == 'Data Pemasukan' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('pemasukan');?>"><i class="fas fa-download"></i> <span>Data Pemasukan</span></a></li> 
             <li class="<?= $title == 'Data Pengeluaran' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('pengeluaran');?>"><i class="fas fa-upload"></i> <span>Data Pengeluaran</span></a></li> 
             <li class="<?= $title == 'Cash Flow' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('cash-flow');?>"><i class="fas fa-sync"></i> <span>Cash Flow</span></a></li>      
-            
+            <?php endif;?>
+
+            <?php if(is_owner()):?>
+            <li class="menu-header">Data Pengajuan</li>       
+            <li class="<?= $title == 'Data Pengajuan' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('pengajuan');?>"><i class="fas fa-clipboard-check"></i> <span>Data Pengajuan</span></a></li> 
+            <li class="menu-header">Data Transaksi</li>
+            <li class="<?= $title == 'Cash Flow' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('cash-flow');?>"><i class="fas fa-sync"></i> <span>Cash Flow</span></a></li>      
+            <?php endif;?>
+
+            <?php if(is_produksi() || is_marketing() || is_purchase()):?>
+            <li class="menu-header">Data Pengajuan</li>       
+            <li class="<?= $title == 'Data Pengajuan' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('pengajuan');?>"><i class="fas fa-clipboard-check"></i> <span>Pengajuanku</span></a></li> 
+            <?php endif;?>
+
+            <?php if(is_marketing()):?>
+            <li class="menu-header">Data Pendapatan</li>
+            <li class="<?= $title == 'Data Pendapatan Order' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('pendapatan-order');?>"><i class="fas fa-clipboard-check"></i> <span>Data Pendapatan Order</span></a></li> 
+            <?php endif;?>
           </ul>
 
           <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
