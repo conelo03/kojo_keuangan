@@ -76,6 +76,16 @@ $route['tambah-produk'] 	        = 'Produk/tambah';
 $route['edit-produk/(:any)'] 	    = 'Produk/edit/$1';
 $route['hapus-produk/(:any)']    	= 'Produk/hapus/$1';
 
+$route['jenis-pemasukan'] 				    = 'Jenis_pemasukan';
+$route['tambah-jenis-pemasukan'] 	        = 'Jenis_pemasukan/tambah';
+$route['edit-jenis-pemasukan/(:any)'] 	    = 'Jenis_pemasukan/edit/$1';
+$route['hapus-jenis-pemasukan/(:any)']    	= 'Jenis_pemasukan/hapus/$1';
+
+$route['jenis-pengeluaran'] 				    = 'Jenis_pengeluaran';
+$route['tambah-jenis-pengeluaran'] 	        = 'Jenis_pengeluaran/tambah';
+$route['edit-jenis-pengeluaran/(:any)'] 	    = 'Jenis_pengeluaran/edit/$1';
+$route['hapus-jenis-pengeluaran/(:any)']    	= 'Jenis_pengeluaran/hapus/$1';
+
 $route['order'] 				    = 'Order';
 $route['tambah-order'] 	        = 'Order/tambah';
 $route['edit-order/(:any)'] 	    = 'Order/edit/$1';
@@ -113,3 +123,18 @@ $route['hapus-gaji-produksi/(:any)']    	= 'Gaji_produksi/hapus/$1';
 $route['generate-gaji-produksi/(:any)']    	= 'Gaji_produksi/generate/$1';
 $route['posting-gaji-produksi/(:any)']    	= 'Gaji_produksi/posting/$1';
 $route['detail-gaji-produksi/(:any)']    	= 'Gaji_produksi/detail/$1';
+$route['detail-gaji-by-pegawai/(:any)/(:any)'] = 'Gaji_produksi/detail_gaji/$1/$2';
+
+$route['pengajuan'] 				    = 'Pengajuan';
+$route['tambah-pengajuan'] 	        = 'Pengajuan/tambah';
+$route['edit-pengajuan/(:any)'] 	    = 'Pengajuan/edit/$1';
+$route['hapus-pengajuan/(:any)']    	= 'Pengajuan/hapus/$1';
+$route['posting-pengajuan/(:any)']    	= 'Pengajuan/posting/$1';
+$route['approve-pengajuan/(:any)']    	= 'Pengajuan/approve/$1';
+
+$route['pendapatan-order'] 				    = 'Pendapatan_order';
+$route['tambah-pendapatan-order'] 	        = 'Pendapatan_order/tambah';
+$route['edit-pendapatan-order/(:any)'] 	    = 'Pendapatan_order/edit/$1';
+$route['hapus-pendapatan-order/(:any)']    	= 'Pendapatan_order/hapus/$1';
+$route['posting-pendapatan-order/(:any)']    	= 'Pendapatan_order/posting/$1';
+$route['approve-pendapatan-order/(:any)']    	= 'Pendapatan_order/approve/$1';
